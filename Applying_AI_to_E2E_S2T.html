@@ -248,12 +248,26 @@
         models had supplementary training aided by a pre-trained
         English Automatic Speech Recognition (ASR) model from
         FaceBook’s Fairseq toolkit.
+
+        <figure>
+          <img src='images/voicevox.png' alt='voicevox-software'/>
+          <figcaption>VOICEVOX: AI Speech Generation Software, with audio adjustment
+          parameters in sidebar. Text is input, and parameters can be set to generate
+          audio in various styles.</figcaption>
+        </figure>
+        
         <br>
         To evaluate the models, I used the models to translate
         sentences from a test split, which only contained human voice
         clips, and compared those computed translations accuracy to
         the correct translation by calculating the BLEU (BiLingual
         Evaluation Understudy) score.
+
+        <figure>
+          <img src='images/bleu.png' alt='bleu-formula'/>
+          <figcaption>Formula for BLEU Score, via Google Cloud</figcaption>
+        </figure>
+        
         <br>
         I trained and validated the models on the train and validation
         clips for 2000 updates (creating 2000 checkpoints) in Google
@@ -292,6 +306,18 @@
       scores in mind, it does not appear that Japanese End-to-End
       translation models are performing as well compared to other
       languages.
+
+       <figure>
+          <img src='images/hutrue.png' alt='human-tl'/>
+          <figcaption> Human-Trained: Sample Translation Output. The green text is the
+          true translation, and the blue is the model output.</figcaption>
+       </figure>
+
+       <figure>
+          <img src='images/aitru.png' alt='ai-tl'/>
+          <figcaption> AI-Trained: Sample Translation Output. The green text is the true
+          translation, and the blue is the model output.</figcaption>
+       </figure>
     </p>
   
   <h2 id = "disc">Discussion</h2>
@@ -352,6 +378,19 @@
       develops similarly for both human and AI audio, it is possible
       that AI may be used as a substitute and reduce the dependency
       on humans to create data.
+
+      <figure>
+          <img src='images/human.png' alt='early-human-tl'/>
+          <figcaption>Translation Sample from Early Human-Trained Model. The green text
+          is the true translation, and the blue is the model output.</figcaption>
+       </figure>
+
+     <figure>
+          <img src='images/ai.png' alt='early-ai-tl'/>
+          <figcaption>Translation Sample from Early AI-Trained Model. The green text is
+          the true translation, and the blue is the model output.</figcaption>
+       </figure>
+      
     </p>
   
   <h2 id = "future-objectives">Future Objectives</h2>
