@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!-- saved from url=(0242)https://alt-571910f3bd595.blackboard.com/bbcswebdav/pid-2488871-dt-content-rid-35025160_1/courses/DATA441-01-S24/Structure%20for%20the%20Capstone%20Project.html?one_hash=B8D0572ADBE386EC82A7E2DC866835AC&f_hash=0A2C613F88D37563E0F397EA797B208B -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structure for the Capstone Project</title>
+  <link rel="stylesheet" href="./Structure for the Capstone Project_files/style.css">
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="good-data---good-thesis----a-capstone-project">Exploring the Application of AI to the Training of
+    End-to-End Translation Models</h1>
+<h2 id="abstract">Abstract</h2>
+<p>Millions of people travel internationally every year,
+  and the number continues to grow. As such, the need for fast,
+  reliable, and accurate translation services remain strong. Current
+  speech translation models are typically cascading models. A new
+  type, called End-to-End models, are capable of outperforming
+  traditional cascading models, but their range in language is
+  limited due to lack of usable data. In this project, I explored
+  the viability of using AI-generated voice clips as a substitute for
+  human voice clips in training speech translation models. The resulting BLEU metrics suggested that AI-generated voice clips are
+  not ideal for training, however, due to many challenges during the
+  model development process, it does not appear that the viability
+  of AI in training models is fully discovered. Future research may
+  further test the accuracy of AI clips compared to human clips
+  with better and more consistent hardware. Additionally, research
+  may be done regarding the audio engineering of clips and how to
+  make them sound more human-like. Overall, there is still much
+  to be done before the applicability of AI in speech translation
+  development can be fully gauged. The link to the code file and
+  data is <a href = https://colab.research.google.com/drive/1ze-6H0ZC6Cnoj6zR0toacU2Kqu0hDqZS?usp=sharing>here</a>.</p>
+<hr>
+
+<h2 id="introduction-comprehensive">Introduction</h2>
+<p>Every year, several hundred million people travel to another
+  country. Many times, these people may travel to a country
+  whose language they are not familiar with. In more popular,
+  developed nations, it can be easy to access online translation
+  services. However, there remain many areas with less adequate
+  technology to access online services. More rural communities
+  may lack internet access completely. Though tourist destinations are often popular and have great access to online services,
+  the process of translation is still clunky and sometimes slow.
+  For example, it would be difficult for an individual to instantly
+  translate speech, in the case that they were being spoken to
+  or otherwise engaged in a conversation. Instead, they may
+  have to request the speaker to repeat words, sentences, and
+  otherwise disrupt the flow of conversation. On both ends of
+  the spectrum, improvement can be made to advance the speed
+  and convenience of translation tools to allow for faster, more
+  efficient interpretation.</p>
+
+
+  <h2 id="background">Background</h2>
+
+  <h3 id="means-of-tl">Means of Translation</h3>
+    <p>
+      For speech translation, most modern tools are cascading
+      models. First, an automatic speech recognition model transcribes the audio to text,
+      then a machine translator translates the text into the target language, and finally a text-to-speech
+      tool turns the translated text into speech [4]. However, with
+      this cascading process, there is risk of decay in accuracy, and
+      the costs for training and high-resource needs are not ideal [3].
+      Instead of this multi-step process, researchers are considering
+      a more direct approach to translation, where audio data is
+      directly processed through a single neural network. This type
+      of model, where one neural network directly processes audio
+      without intermediary changes, is called end-to-end translation.
+    </p>
+
+  <h3 id="abt-end-2-end">About End-to-End Models</h3>
+    <p>
+      While traditional translation models involve a three-step
+      transcription, translation, and text-to-speech process, End-to-End translates the audio directly rather than the transcribed
+      text. There are numerous metrics by which these translation
+      models are compared on. For translation quality, BLEU, TER,
+      and METEOR are often used, with BLEU being the most
+      common [3]. BLEU returns a weighted average score of how
+      much of the translated text (length-wise) matches the target
+      translation, TER scores are based on the amount of editing
+      required to have the translation match the target sentence,
+      and METEOR utilizes unigrams to score similarity. To measure
+      speed and latency, Average Proportion, Average Lagging, and
+      Differentiable Average Lagging are often used.
+      <br>
+      Zhang and Haddow report that, based on previous research, smaller vocabulary, larger dropout, including a wider feed-forward layer,
+      and reduced model dimensions help with avoiding overfitting
+      and improving overall model quality. They also find that
+      properly trained End-to-End models are cascading models,
+      both in accuracy and speed. Many End-to-End models utilize
+      Seq2Seq encoders and decoders to process audio without
+      needing to first transcribe to text, and models of this kind
+      that have been trained on some ASMR and MT losses return
+      adequate outputs [3]. Furthermore, the curriculum learning
+      strategy has been found to produce faster convergence and thus
+      hasten the model-building process [2]. Overall, with adequate
+      data and training, End-to-End models are able to compete with
+      cascading models in regards to accuracy with reduced costs.
+    </p>
+
+  <h3 id="limits-of-e2e">Limitations of End-to-End Models</h3>
+    <p>
+      Currently, there is little research on the difference between
+      supervised and unsupervised, trained and pretrain models
+      regarding performance [3]. Furthermore, cascading models
+      are significantly outperforming End-to-End models in offline
+      contexts [6]. To improve scores, the quality of the audio data
+      should be considered. There is not much emphasis on audio
+      cleanliness, and fixing the data to remove excess noise, music,
+      or unneeded sounds and focusing on the primary speaker
+      (removing extra speakers) may aid in the improvement of End-to-End models. The scores being used to measure performance
+      can also be improved, as what a strict equation determines to
+      be adequate may not appear so to the human mind. Another
+      aspect not yet fully explored is the application of End-to-End
+      models to less similar languages, such as Japanese, despite the
+      high number of data resources available [3].
+    </p>
+    
+  <h3 id="e2e-jp">End-to-End Japanese Translation</h3>
+    <p>
+      Much of the current research on End-to-End translation
+      involves languages that are similar. The chosen languages
+      often have similar word order and syntax styles. For example,
+      German and English share the same language family, and are
+      thus very similar. Translating between such linguistically close
+      languages is much easier compared to more distant languages,
+      such as those found in East Asia.
+      <br>
+      Languages such as Japanese that are more linguistically
+      different have not been researched as much [1]. There is an
+      increased level of difficulty that is present even in manual,
+      human-translations due to the “reversal” of word order between English and Japanese. Comparatively, Japanese can also
+      be much more context-based, with more leeway to leave out
+      certain words and have the meaning remain intact, whereas
+      in other languages, subjects and objects may have to be more
+      clearly defined.
+      <br>
+      Additionally, there is significantly less parallel speech data
+      for English and Japanese, which is ideal for the training of
+      End-to-End models. However, there has been reported success
+      with applying end-to-end models to Japanese translation. In
+      2020, Kano, Sakti, and Nakamura found that an attentionbased, curriculum strategy trained End-to-End model produced
+      better results than traditional cascading models [2]. Though
+      there may not be many parallel English and Japanese audio
+      data, there are many resources for text data. With such data,
+      more research can be done to improve end-to-end translation
+      with more “distant” languages such as Japanese.
+    </p>
+<h2 id="methodology">Methodology</h2>
+    <p>
+      There currently exists a large gap in translation research in
+      regards to the application of End-to-End models to Englishdistant languages and attention to audio cleanliness and quality. To address these gaps, I would like to train a model using
+      humanlike AI-voiced parallel language texts, in addition to
+      training on human speech audio.
+    </p>
+
+    <h3 id = "objective">Objective</h3>
+      <p>
+        Current speech translation systems rely on a cascading
+        model of multiple parts, making them prone to error and
+        decay at each step. With this project, I explore a different
+        type of model that directly translates speech with no need for
+        transcription: end-to-end translation.
+        <br>
+        Additionally, there are numerous quality corpuses for translation. However, especially for lower-resource languages like
+        Asian languages, most of these corpuses only have text data;
+        there is no audio or speech data that models can be trained
+        on. As a result, the amount of data from which translations
+        models can be trained on is limited and, consequently, the
+        development of speech translation models is hindered.
+        <br>
+        My goal is to determine if AI can be used to aid in
+        the training and overall efficiency of end-to-end models. As
+        AI technology improves, its ability in synthesizing speech
+        grows stronger. The generated audios sound extremely similar
+        to human speech, potentially reducing the need for human
+        speakers to create audio data
+      </p>
+    <h3 id = "data">Description of Data</h3>
+      <p>
+        The data I used was from CoVoST 2 Native Japanese
+        Dataset, a corpus containing only native speaker utterances
+        from the CoVost dataset. In this corpus, there are 1119 train
+        clips, 635 validation clips, and 684 test clips. Because this
+        corpus only contains native speakers, the number of audio
+        clips is smaller and thus faster to train. However, because this
+        is a native speaker subset of a larger corpus, the speakers in
+        this corpus are more homogeneous: they are all young men. I
+        matched this in the AI speech dataset by selecting a voicebank
+        that resembled a young adult male.
+        <br>
+        AI speech audio was generated through Voicevox, an opensource text-to-speech software. The software accepts parameters to customize the speech, and I used all default parameters
+        except for speed, which I set to 0.8. I input the text transcripts
+        of the audio from the corpus into the software, and it produced
+        the corresponding AI-speech audio clips. Then, because the
+        output for VOICEVOX is WAV and the study model only
+        accepts MP3, I used Audacity to convert all clips to MP3.
+        Then, I uploaded the data onto Google Drive to be used in
+        a Google Colab notebook file. The project was then run in
+        Google Colab, using their GPU to train and evaluate the model.
+      </p>
+
+    <h3 id = "design">Experimental Design</h3>
+      <p>
+        To have a proper baseline comparison, the model training
+        and evaluation procedure was based off a 2020 study by
+        Changhan Wang, Anne Wu, and Juan Pino [7]. I used the
+        same training and model configuration recipes as described in
+        the study. This involved the inclusion of a pre-trained ASR
+        model used to aid in the training of the model; actual ASR
+        was not performed as the model is end-to-end.
+        <br>
+        To evaluate the viability of AI-generated audio clips for
+        training translation models, I trained two models on different
+        datasets. One model was trained on AI-generated speech clips,
+        and the other was trained on the original human speech clips.
+        Both clips contained the same sentences and order; the only
+        difference was whether the speaker was human or not. Both
+        models had supplementary training aided by a pre-trained
+        English Automatic Speech Recognition (ASR) model from
+        FaceBook’s Fairseq toolkit.
+        <br>
+        To evaluate the models, I used the models to translate
+        sentences from a test split, which only contained human voice
+        clips, and compared those computed translations accuracy to
+        the correct translation by calculating the BLEU (BiLingual
+        Evaluation Understudy) score.
+        <br>
+        I trained and validated the models on the train and validation
+        clips for 2000 updates (creating 2000 checkpoints) in Google
+        Colab. Then, in accordance to the process outlined in Wang,
+        Wu, and Pino’s research, I averaged the last 5 updates and
+        evaluated the averaged resulting model on the test clips. Then,
+        I compared the BLEU scores and manually checked some
+        translations for each model.
+      </p>
+
+  <h2 id = "results">Results</h2>
+    <p>
+      Overall, the results are indefinite, and there is currently no
+      strong evidence supporting the viability of AI-generated clips
+      in training speech translation models.
+      <br>
+      For reference, the BLEU score for the model developed in
+      the study by Wang was 1.5. For BLEU Scores, an extremely
+      high quality translation (possibly exceeding a human-created
+      translation) would earn a score of 60+. Scores of 30-40
+      indicate fairly good results, and scores below that are not very
+      high quality.
+      <br>
+      In my initial run, I trained the models for 200 epochs each.
+      However, the results were extremely poor: the outputs were
+      not understandable and consisted of repeated phrases. Both
+      the human-speech-trained and AI-speech-trained models were
+      poor in this fashion. The BLEU score was also low, with the
+      human-trained model scoring 0.47 and the AI-trained scoring
+      0.34. As a result, I performed additional training, and evaluated
+      at 2000 epochs ( 50 hours of training).
+      <br>
+      For the models trained for 2000 epochs, I obtained a BLEU
+      score of 1.72 for the model trained on human speech data, and
+      0.18 on the model trained on AI-generated data. With these
+      scores in mind, it does not appear that Japanese End-to-End
+      translation models are performing as well compared to other
+      languages.
+    </p>
+  
+  <h2 id = "disc">Discussion</h2>
+    <p>
+      Throughout the process of developing this project, there
+      were several challenges. One of the first issues was the process
+      of generating the data itself. It took a significant amount
+      of time to generate the audio clips then convert them to a
+      compatible MP3 format, and this issue was exacerbated by a
+      lack of GPU resources. Though I was able to obtain a fair
+      amount of GPU usage from Google Colab’s service plans, the
+      2000 epochs I was able to train is significantly short of the
+      800,000 done in Wang’s research.
+      <br>
+      Additionally, when comparing the audio for AI and human
+      datasets, there was a noticeable difference in sound. While
+      the AI clips were exceptionally clean and clear, the human
+      clips often had some additional background white noise. Furthermore, the train, test, and validation split for human audio
+      was much more consistent compared to the AI training/Human
+      testing split in the AI dataset. With the corpus I used, there are
+      only clips from native speakers. These speakers also happen to
+      be young adult men. Thus, with these demographics combined
+      with the more human ”roughness” of the audio, it is possible
+      the model performed better due to the consistency of audio
+      quality and sound in the human dataset. Whereas, for the AI
+      set, there is a contrast between the crisp and clear AI clips and
+      human clips. The software I used, VOICEVOX, also allows
+      for a high level of customization, including pitch, speed, and
+      even syllable-level adjustments. These customization options
+      may allow for more fine-tuned, realistic voice clips. These
+      clips can then be edited to include some base levels of white
+      noise to mimic the imperfect clips more representative of the
+      data translation services would receive.
+      <br>
+      Another challenge was the lack of hardware and resources:
+      training the model required heavy GPU usage. Though Google
+      Colab provided some GPU resources, it did not suffice. I was
+      able to train my models on 2000 epochs each, but models
+      in studies (such as Wang’s) are trained for 800,000 or more
+      epochs. Furthermore, because much of the processes were
+      done online, I often had to restart my training process due
+      to an error (disconnection from internet, etc.) This set back
+      progress significantly, as many valuable GPU hours were lost,
+      and the corrupted model data had to be redone from scratch. I
+      also encountered issues with generating the audio clips, due to
+      the lack of computing power of my hardware. It took numerous
+      tries to finally create, convert, and upload the audio clips as
+      crashes and freezes would stall progress.
+      <br>
+      Considering these challenges, the project environment was
+      overall not ideal, and the true viability of AI-generated audio
+      clips for use developing speech translation models is inconclusive. However, I am hopeful that AI has the potential to
+      aid in this long-running block: the lack of speech data. In
+      the early stages of model training, the mistakes and errors
+      made by both AI and human trained models were similar. This
+      could possibly suggest that, for either human or AI data, the
+      translation model learns similarly. Then, if the model learn and
+      develops similarly for both human and AI audio, it is possible
+      that AI may be used as a substitute and reduce the dependency
+      on humans to create data.
+    </p>
+  
+  <h2 id = "future-objectives">Future Objectives</h2>
+    <p>
+      First, more research should be done to examine the efficacy
+      of AI in creating data for speech translation models. With a
+      more stable workspace, the model should continued be trained
+      for hundreds of thousands more epochs to allow both models
+      enough training and produce fair results. More specifically, with more stronger GPUs, and overall stronger computer. A
+      simple goal would be to perform more training: I only did
+      2,000 epochs, while the study I based my work on performed
+      800,000.
+      <br>
+      Another aspect to consider when improving the model is the
+      audio data itself. The human speech split were all consistent
+      in sound: all clips were from a male young adult native
+      Japanese speaker. Additionally, the quality and surrounding
+      sound (background white noise) of the clips were extremely
+      similar. Comparatively, the AI split, though likely sounding
+      very human-like, sounded significantly cleaner. There was no
+      background noise, as opposed to the white noise that the
+      human clips would have, and this may have altered the shape
+      or form of the sound wave (and, consequently, how the model
+      interprets the audio data). Furthermore, because much of the
+      human clips were from speakers of similar demographics, it
+      may have been easier for the model to process. The AI clips,
+      though male, did not sound as similar to the human male
+      voices the models were tested on.
+      <br>
+      Instead of keeping the AI data inhumanely clean, audio
+      editing software may be applied to ”humanize” AI audio
+      by adding background white noise, adjusting pitch, modify
+      quality, and other measures to make AI audios more ”humanlike”. By being more accurate to what the translation model
+      may hear in typical circumstances (i.e. communicating with a
+      native, human speaker).
+      <br>
+      Then, if results show that AI-generated speech is a viable
+      substitute, effort should be concentrated in diversifying the
+      data. The dataset contains mostly of young adult men. Translation, ideally, should be effective regardless of age or gender.
+      Thus, if the AI-generated training approach is successful,
+      models trained and developed on audios from a range of ages
+      and gender to prepare the model for real-life applications. The
+      world is diverse and varied, and it is important for the data
+      to be the same so that the model can best represent and work
+      for everyone.
+      <br>
+      Overall, given the results and challenges faced, there is still
+      much work to be done on this topic. If AI-generated speech is
+      found to be an adequate substitute for human speech, speech
+      translation model development will accelerate. If this approach
+      were to work for the Japanese language, other researchers
+      may opt to apply a similar approach with other languages.
+      AI technology continues to improve, and their benefits have
+      the potential to significantly impact the future of machine
+      translation
+    </p>
+
+
+<h2 id="references">References</h2>
+<ol>
+<li>Y. Ko, R. Fukuda, Y. Nishikawa, Y. Kano, K. Sudoh, and S. Nakamura,
+  ‘Tagged End-to-End Simultaneous Speech Translation Training using
+  Simultaneous Interpretation Data’, arXiv [cs.CL]. 2023.</li>
+<li>T. Kano, S. Sakti, and S. Nakamura, ‘End-to-End Speech Translation
+  With Transcoding by Multi-Task Learning for Distant Language Pairs’,
+  IEEE/ACM Transactions on Audio, Speech, and Language Processing,
+  vol. 28, pp. 1342–1355, 2020.</li>
+<li>N. Sethiya and C. K. Maurya, ‘End-to-End Speech- to-Text Translation:
+  A Survey’, arXiv [cs.CL]. 2023.</li>
+<li>B. Zhang, B. Haddow, and R. Sennrich, ‘Revisiting End-to-End Speechto-Text Translation From Scratch’, arXiv [cs.CL]. 2022.</li>
+<li>T. Ray, “Meta unveils ‘seamless’ speech-to-speech translator,” ZDNET,
+  https://www.zdnet.com/article/meta- unveils-seamless-speech-to-speechtranslator/ (accessed Mar. 1, 2024).</li>
+<li>B. Radhakrishnan, S. Agrawal, R. Prakash Gohil, K. Praveen, A. Vinay
+  Dhopeshwarkar, and A. Pandey, ‘SRI- B’s Systems for IWSLT 2023 Dialectal and Low-resource Track: Marathi-Hindi Speech Translation’, in
+  Proceedings of the 20th International Conference on Spoken Language
+  Translation (IWSLT 2023), 2023, pp. 449–454.</li>
+<li>C. Wang, A. Wu, and J. Pino, ‘CoVoST 2 and Massively Multilingual
+  Speech-to-Text Translation’, arXiv [cs.CL]. 2020.</li>
+<li> “Evaluating models ,” Google, https://cloud.google.com/translate /automl/docs/evaluate(accessed May 1, 2024).</li>
+
+</ol>
+</div>
+
+
+
+</body></html>
