@@ -66,6 +66,20 @@
       directly processed through a single neural network. This type
       of model, where one neural network directly processes audio
       without intermediary changes, is called end-to-end translation.
+      
+      <figure>
+        <img src='images/cascade.png' alt='cascading-model' />
+        <figcaption>Visualization of a Cascading Model. Speech audio is transcribed
+        to text, then a neural machine translation (NMT) model is used to generate
+        translation text.</figcaption>
+      </figure>
+      
+      <figure>
+        <img src='images/end2end.png' alt='end-to-end' />
+        <figcaption>Visualization of an End-to-End Model. Speech audio is directly fed
+        to the Speech-Text encoder, and the encodings are sent to the decoder, which
+        produce translation text from the audio data.</figcaption>
+      </figure>
     </p>
 
   <h3 id="abt-end-2-end">About End-to-End Models</h3>
@@ -189,6 +203,21 @@
         matched this in the AI speech dataset by selecting a voicebank
         that resembled a young adult male.
         <br>
+
+      <figure>
+        <img src='images/data_sample.png' alt='data_sample' />
+        <figcaption>A sample of the training text and data used. The path directs to the
+        corresponding audio file.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src='images/data_sample2.png' alt='data_sample' />
+        <figcaption>A sample of the test text and data. The path directs to the
+                    corresponding audio file.
+        </figcaption>
+      </figure>
+        
         AI speech audio was generated through Voicevox, an opensource text-to-speech software. The software accepts parameters to customize the speech, and I used all default parameters
         except for speed, which I set to 0.8. I input the text transcripts
         of the audio from the corpus into the software, and it produced
